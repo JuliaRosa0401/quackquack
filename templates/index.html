@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Esse Pato Sou Eu!!</title>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='logomarca.png') }}" alt="logo 'quack quack, tradução: que pato sou eu?'">
+    </header>
+    <main>
+        <div class="container">
+            <div class="form">
+                <form action="/" method="post">
+                    <label>Informe seu nome</label>
+                    <input type="text" name="nome"/>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+            <div class="gato">
+                {% if not url_imagem %}
+                    <img src="{{ url_for('static', filename='patoerro.png') }}" alt="Erro na imagem do pato"/>
+                {% else %}
+                    <img src="{{ url_imagem }}" alt="Imagem de pato"/>
+                    <p>{{ nome }}</p>
+                {% endif %}
+                
+                {% if erro %}
+                    <p>{{ erro }}</p>
+                {% endif %}
+            </div>
+
+            <div class="avemedia">
+                {% if species %}
+                    <h2>Gravação de Ave Aleatória</h2>
+                    <p>Espécie: {{ species }}</p>
+                    {% if audio_url %}
+                        <audio controls>
+                            <source src="{{ audio_url }}" type="audio/mpeg">
+                            Seu navegador não suporta o elemento de áudio.
+                        </audio>
+                    {% else %}
+                        <p>Desculpe, não conseguimos encontrar uma gravação de áudio.</p>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+        <!-- <button>Descobrir qual raposa eu sou</button> -->
+    </main>
+    <footer>
+        <img src="{{ url_for('static', filename='logo2.png') }}" alt="Logo de gato programador">
+        <p>Desenvolvido por um pato amarelinho. QUACK QUACK</p>
+    </footer>
+</body>
+</html>
