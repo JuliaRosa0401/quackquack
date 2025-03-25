@@ -26,5 +26,22 @@ def index():
         return render_template('index.html', erro="Erro no sistema! O pato foi nadar!")    
 
 
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "app.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "app.py"
+      }
+    ]
+}
+
+
 if __name__ == '__main__':
     app.run(debug=True)
